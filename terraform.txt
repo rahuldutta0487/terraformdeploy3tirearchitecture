@@ -1,0 +1,59 @@
+# Actually its terraform.tfvars
+
+aws_region = "eu-central-1"
+
+project = {
+  name = "rahul-aws-3tier"
+}
+
+network = {
+  vpc = {
+    cidr = "10.0.0.0/16"
+  }
+
+  availability_zones = [
+    "eu-central-1a",
+    "eu-central-1b"
+  ]
+
+  subnets = {
+    public = [
+      "10.0.1.0/24",
+      "10.0.2.0/24"
+    ]
+
+    app = [
+      "10.0.11.0/24",
+      "10.0.12.0/24"
+    ]
+
+    db = [
+      "10.0.21.0/24",
+      "10.0.22.0/24"
+    ]
+  }
+}
+
+web_asg = {
+  instance_type     = "t3.micro"
+  key_name          = ""
+  ssh_allowed_cidrs = []
+  min_size          = 1
+  desired_capacity  = 1
+  max_size          = 2
+}
+
+app_asg = {
+  instance_type    = "t3.micro"
+  key_name         = ""
+  min_size         = 1
+  desired_capacity = 1
+  max_size         = 2
+}
+
+db = {
+  instance_class = "db.t3.micro"
+  name           = "appdb"
+  username       = "admin"
+  password       = "Rahul123456"
+}
